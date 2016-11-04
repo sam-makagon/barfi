@@ -49,7 +49,10 @@ def printquery(statement, bind=None):
 
 def toggle_status():
   toggle_status_query = """ update coffee.status set brew_time = now(), station_status = case when station_status = 1 then 0 else 1 end;  """
-  return engine.execute(toggle_status_query)
+  engine.execute(toggle_status_query)
 
-
+  get_status_query = """ select station_status from coffee.status  """
+  resultset = engine.execute(get_status_query)
+  result = resultset.fetchone()
+  return result[0]
 
