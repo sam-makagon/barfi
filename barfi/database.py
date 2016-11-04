@@ -1,6 +1,5 @@
 from __future__ import print_function
 from flask import Flask
-from pyodbc import *
 
 #from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, MetaData
