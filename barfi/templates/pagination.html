@@ -1,0 +1,11 @@
+{% if total_pages > 1 %}
+  <h4>
+    {% if cur_page != 1 %}
+      <a href="?page={{ cur_page - 1 }}"><- Prev</a>
+    {% endif %}
+    page {{ cur_page }} out of {{ total_pages }} ({{ rowcount }} total items) 
+    {% if cur_page < total_pages %}
+      <a href="?page={{ cur_page + 1 }}">Next -></a>
+    {% endif %}
+  </h4>
+{% endif %}

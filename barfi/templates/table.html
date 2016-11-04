@@ -1,0 +1,20 @@
+{% macro header(display_name, db_name) -%}
+  <a href="?sort_by={{ db_name }}&sort_order={% if request.args.get('sort_by') == db_name %}{%if request.args.get('sort_order') == 'asc'%}desc{% else %}asc{% endif %}{% else %}asc{% endif %}">{{ display_name }}</a>
+
+  {% if request.args.get('sort_by') == db_name %}
+    {% if request.args.get('sort_order') == 'asc' %}
+      <span class="glyphicon glyphicon-arrow-up"></span>
+    {% else %}
+      <span class="glyphicon glyphicon-arrow-down"></span>
+    {% endif %}
+  {% endif %}  
+{%- endmacro %}
+
+{% macro truncate(value, length, killwords, hover_orientation) -%}
+  {% if value %}
+    {{ value|truncate(length, killwords, '') }}
+  {% endif %}
+  {% if value and value|length > length %}
+    <a data-toggle="tooltip" data-placement="{{hover_orientation}}" title="{{value}}">...</a>
+  {% endif %}
+{%- endmacro %}

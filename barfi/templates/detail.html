@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include 'header-include.html' %}
+  <body>
+    {% include 'header.html' %}
+    <div class="container-fluid">
+      <table class="table table-hover table-bordered">
+        <tr>
+          <th>Status</th>
+          <td>{{items[0].status_description}}</td>
+        </tr>
+        <tr>
+          <th>Process</th>
+          <td>{{items[0].name}} {{items[0].arguments}}</td>
+        </tr>
+        <tr>
+          <th>User</th>
+          <td>{{items[0].user}}</td>
+        </tr>
+        <tr>
+          <th>Host</th>
+          <td>{{items[0].host}}</td>
+        </tr>
+        <tr>
+          <th>Date</th>
+          <td>{{ items[0].modify_date.strftime('%Y-%m-%d %H:%M:%S') if items[0].modify_date }}</td>
+        </tr>
+        <tr>
+          <th>Message</th>
+          <td>
+          {% if items[0].message %}
+            <pre>{{items[0].message}}</pre>
+          {% endif %}
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    {% include 'footer-include.html' %}
+  </body>
+</html>

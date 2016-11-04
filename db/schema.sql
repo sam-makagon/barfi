@@ -1,4 +1,42 @@
-create schema coffee;
+create schema coffee if not exists;
+
+ALTER ROLE barfi SET search_path TO coffee;
+
+drop table coffee.sensors;
+drop table coffee.status;
+
+create table coffee.sensors (
+    sensor_id serial PRIMARY KEY
+    , station_name text not null
+    , sensor_data text null
+    , event_date timestamp null default CURRENT_TIMESTAMP
+);
+
+create table coffee.status (
+    status_id serial PRIMARY KEY
+    , station_name text not null
+    , station_status int not null
+    , brew_time timestamp null
+);
+
+GRANT ALL PRIVILEGES ON SCHEMA coffee TO barfi;
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA coffee TO  barfi;
+
+
+GRANT USAGE, SELECT ON SEQUENCE coffee.sensors_sensor_id_seq TO barfi;
+GRANT USAGE, SELECT ON SEQUENCE coffee.sensors_sensor_id_seq TO barfi;
+
+GRANT USAGE, SELECT ON SEQUENCE coffee.status_status_id_seq TO barfi;
+GRANT USAGE, SELECT ON SEQUENCE coffee.status_status_id_seq TO barfi;
+
+
+
+/* 
+drop table coffee.stations;
+drop table coffee.carafes;
+drop table coffee.sensors;
+
 
 create table coffee.stations (
     station_id serial PRIMARY KEY
@@ -23,5 +61,6 @@ create table coffee.sensors (
 
 create index sensors_idx1 on coffee.sensors(station_id);
 
+*/
 
-    
+
