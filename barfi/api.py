@@ -25,7 +25,7 @@ def insert_sensor_reading(data=None, **kw):
 
 manager = flask.ext.restless.APIManager(app, session=session)
 
-#service_blueprint = manager.create_api(models.Sensors, methods=['GET', 'POST'])
+service_blueprint = manager.create_api(models.Status, methods=['GET', 'POST'])
 service_blueprint = manager.create_api(models.Sensors, 
     methods=['GET', 'POST'],
     preprocessors={
