@@ -45,3 +45,11 @@ def printquery(statement, bind=None):
 
   compiler = LiteralCompiler(dialect, statement)
   print(compiler.process(statement))
+
+
+def toggle_status():
+  toggle_status_query = """ update coffee.status set station_status = case when station_status = 1 then 0 else 1 end;  """
+  return engine.execute(toggle_status_query)
+
+
+
