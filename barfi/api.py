@@ -23,6 +23,7 @@ def insert_sensor_reading(data=None, **kw):
   # notify when carafe is full
   if (status == 1):
     post_slack("Fresh pot of coffee is ready!", "#project_barfi")
+    #post_slack("Fresh pot of coffee is ready!", "#coffee-club")
 
   # try:
   #   #session.query(models.Service).filter(models.Service.id == kw['result']['parent_id']).update(update)
